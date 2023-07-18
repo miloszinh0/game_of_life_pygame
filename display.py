@@ -10,12 +10,21 @@ YELLOW = (255, 255, 0)
 
 class Display:
     def __init__(self, game, size, fps):
+        '''
+        Display(game: object Game, size: int, fps: int)
+        game - object of class Game
+        size - size of the pygame window
+        fps - number of frames per second
+        '''
         self.game = game
         self.size = size
         self.fps = fps
         self.window = pygame.display.set_mode((self.size ,self.size))
 
     def draw_window(self):
+        '''
+        Function draws window.
+        '''
         self.window.fill(WHITE)
         for x in range(self.game.board_size):
             for y in range(self.game.board_size):
@@ -28,6 +37,9 @@ class Display:
         pygame.display.update()
 
     def main(self):
+        '''
+        Main function managing the project.
+        '''
         self.game.random_board()
         run = True
         clock = pygame.time.Clock()

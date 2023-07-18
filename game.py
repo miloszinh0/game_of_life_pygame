@@ -2,11 +2,20 @@ import random
 
 class Game:
     def __init__(self, board_size, tiles):
+        '''
+        Game(board_size: int, tiles: int)
+        Class defining game of life.
+        board_size - size of the table: board_size x board_size
+        tiles - number of alive tiles on the board
+        '''
         self.board_size = board_size
         self.board = [[0 for _ in range(self.board_size)] for _ in range(self.board_size)]
         self.tiles = tiles
 
     def random_board(self):
+        '''
+        Function randomizing positons of the tiles.
+        '''
         tiles_alive = 0
         while tiles_alive < self.tiles:
             a = random.randint(0, self.board_size-1)
@@ -16,6 +25,9 @@ class Game:
                 tiles_alive += 1
 
     def find_neighbours(self, x, y):
+        '''
+        Function looking for neighbours of the tile.
+        '''
         self.possible_neighbours = [[x-1, y-1], [x-1, y], [x-1, y+1], [x, y-1], [x, y+1], [x+1, y-1], [x+1, y], [x+1, y+1]]
         self.neighbours = []
         for n in self.possible_neighbours:
@@ -23,12 +35,18 @@ class Game:
                 self.neighbours.append(n)
 
     def check_number(self):
+        '''
+        Function counting neigbours of the tile.
+        '''
         self.count = 0
         for n in self.neighbours:
             if self.board[n[0]][n[1]] == 1:
                 self.count += 1
 
     def update(self):
+        '''
+        Function updating board.
+        '''
         self.next_board = [[0 for _ in range(self.board_size)] for _ in range(self.board_size)]
 
         for x in range(self.board_size):
